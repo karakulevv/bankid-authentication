@@ -1,6 +1,5 @@
 ﻿using Application.Models.Requests;
 using Application.Models.Responses;
-using Infrastructure.Models.Requests;
 
 namespace Infrastructure.Clients.Interfaces;
 

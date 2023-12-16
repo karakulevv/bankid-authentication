@@ -1,4 +1,5 @@
-﻿using Application.Models.Requests;
+﻿using Application.Exceptions;
+using Application.Models.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
