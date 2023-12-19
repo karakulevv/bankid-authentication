@@ -1,11 +1,9 @@
-﻿using Application.Models.Responses;
-using FluentValidation;
-using MediatR;
+﻿using FluentValidation;
 using Newtonsoft.Json;
 
-namespace Application.Models.Requests;
+namespace Application.Clients.Models.Requests;
 
-public class BankIdCollectRequest : OrderReference, IRequest<BankIdCollectResponse>
+public class BankIdCollectRequest : OrderReferenceDto
 {
     [JsonProperty("isAutoStart")]
     public bool IsAutoStart { get; set; }

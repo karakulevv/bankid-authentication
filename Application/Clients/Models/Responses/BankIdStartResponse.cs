@@ -1,7 +1,7 @@
 ﻿using Application.Models.Enums;
 using Newtonsoft.Json;
 
-namespace Application.Models.Responses;
+namespace Application.Clients.Models.Responses;
 
 public class BankIdStartResponse
 {

@@ -1,4 +1,4 @@
-﻿namespace Application.Models.Responses;
+﻿namespace Application.Clients.Models;
 
 public class CompletionData
 {

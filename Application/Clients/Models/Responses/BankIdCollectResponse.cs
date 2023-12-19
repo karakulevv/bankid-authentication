@@ -1,7 +1,7 @@
 ﻿using Application.Models.Enums;
 using System.Text.Json.Serialization;
 
-namespace Application.Models.Responses;
+namespace Application.Clients.Models.Responses;
 
 public class BankIdCollectResponse
 {

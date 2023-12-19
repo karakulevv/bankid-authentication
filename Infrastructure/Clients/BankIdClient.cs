@@ -1,6 +1,7 @@
 ﻿using Application.Models.Requests;
-using Application.Models.Responses;
-using Infrastructure.Clients.Interfaces;
+using Application.Clients.Models.Requests;
+using Application.Clients.Models.Responses;
+using Application.Clients.Interfaces;
 
 namespace Infrastructure.Clients;
 
@@ -11,12 +12,12 @@ public class BankIdClient : IBankIdClient
         throw new NotImplementedException();
     }
 
-    public Task<BankIdCollectUserResponse> CollectAuthenticationAsync(BankIdCollectRequest request)
+    public Task<BankIdCollectResponse> CollectAuthenticationAsync(CollectRequest request)
     {
         throw new NotImplementedException();
     }
 
-    public Task<BankIdStartResponse> InitiateAuthenticationAsync(BankIdStartClientRequest request)
+    public Task<BankIdStartResponse> StartAuthenticationAsync(BankIdStartRequest request)
     {
         throw new NotImplementedException();
     }

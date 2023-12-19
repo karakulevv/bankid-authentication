@@ -5,15 +5,15 @@ using Newtonsoft.Json;
 
 namespace Application.Models.Requests;
 
-public class BankIdStartRequest : IRequest<SimplifiedBankIdStartResponse>
+public class StartRequest : IRequest<StartResponse>
 {
     [JsonProperty("returnUrl")]
     public string ReturnUrl { get; set; }
 }
 
-public class BankIdStartRequestValidator : AbstractValidator<BankIdStartRequest>
+public class StartRequestValidator : AbstractValidator<StartRequest>
 {
-    public BankIdStartRequestValidator()
+    public StartRequestValidator()
     {
         RuleFor(x => x).NotEmpty().NotNull();
         RuleFor(x => x.ReturnUrl).NotEmpty().NotNull().WithMessage("returnUrl parameter missing");

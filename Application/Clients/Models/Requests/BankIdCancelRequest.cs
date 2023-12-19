@@ -1,10 +1,8 @@
-﻿using Application.Models.Responses;
-using FluentValidation;
-using MediatR;
+﻿using FluentValidation;
 
-namespace Application.Models.Requests;
+namespace Application.Clients.Models.Requests;
 
-public class BankIdCancelRequest : OrderReference, IRequest<BankIdCancelResponse>
+public class BankIdCancelRequest : OrderReferenceDto
 {
 }
 

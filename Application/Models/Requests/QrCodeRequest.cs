@@ -4,13 +4,13 @@ using MediatR;
 
 namespace Application.Models.Requests;
 
-public class BankIdQrCodeRequest : OrderReference, IRequest<BankIdQrCodeResponse>
+public class QrCodeRequest : OrderReference, IRequest<QrCodeResponse>
 {
 }
 
-public class BankIdQrCodeRequestValidator : AbstractValidator<BankIdQrCodeRequest>
+public class QrCodeRequestValidator : AbstractValidator<QrCodeRequest>
 {
-    public BankIdQrCodeRequestValidator()
+    public QrCodeRequestValidator()
     {
         RuleFor(x => x).NotEmpty().NotNull();
         RuleFor(x => x.OrderRef).NotEmpty().NotNull();

@@ -1,6 +1,6 @@
 ﻿namespace Application.Models.Responses;
 
-public class BankIdQrCodeResponse
+public class QrCodeResponse
 {
     public string QrData { get; set; }
 }

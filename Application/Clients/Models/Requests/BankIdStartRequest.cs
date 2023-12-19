@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace Application.Models.Requests;
+namespace Application.Clients.Models.Requests;
 
-public class BankIdStartClientRequest
+public class BankIdStartRequest
 {
     [JsonProperty("endUserIp")]
     public string EndUserIp { get; set; }

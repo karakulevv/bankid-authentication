@@ -22,7 +22,7 @@ public class BankIdController : Controller
     //[ProducesResponseType(typeof(SimplifiedBankIdStartResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
-    public async Task<IActionResult> Initiate(BankIdStartRequest startRequest)
+    public async Task<IActionResult> Initiate(StartRequest startRequest)
     {
         if (!ModelState.IsValid)
             return HandleModelStateError(ModelState);
@@ -37,7 +37,7 @@ public class BankIdController : Controller
     //[ProducesResponseType(typeof(SimplifiedBankIdStartResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
-    public async Task<IActionResult> Collect(BankIdCollectRequest collectRequest)
+    public async Task<IActionResult> Collect(CollectRequest collectRequest)
     {
         if (!ModelState.IsValid)
             return HandleModelStateError(ModelState);
@@ -52,7 +52,7 @@ public class BankIdController : Controller
     //[ProducesResponseType(typeof(SimplifiedBankIdStartResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
-    public async Task<IActionResult> Cancel(BankIdCancelRequest cancelRequest)
+    public async Task<IActionResult> Cancel(CancelRequest cancelRequest)
     {
         if (!ModelState.IsValid)
             return HandleModelStateError(ModelState);
@@ -67,7 +67,7 @@ public class BankIdController : Controller
     //[ProducesResponseType(typeof(SimplifiedBankIdStartResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
-    public async Task<IActionResult> QRGenerate(BankIdQrCodeRequest qrCodeRequest)
+    public async Task<IActionResult> QRGenerate(QrCodeRequest qrCodeRequest)
     {
         if (!ModelState.IsValid)
             return HandleModelStateError(ModelState);

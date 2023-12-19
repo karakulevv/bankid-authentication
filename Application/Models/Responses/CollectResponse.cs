@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Application.Models.Responses;
 
-public class BankIdCollectUserResponse
+public class CollectResponse
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public BankIdStatus Status { get; }
@@ -14,21 +14,21 @@ public class BankIdCollectUserResponse
 
     public string? Name { get; set; }
 
-    public string? GivenName { get; set; }
-
     public string? Surname { get; set; }
 
-    public BankIdCollectUserResponse(User userData)
+    public string? GivenName { get; set; }
+
+    public CollectResponse(string ssn, string name, string surname, string givenName)
     {
         Status = BankIdStatus.Ok;
         IsCompleted = true;
-        Ssn = userData.PersonalNumber;
-        Name = userData.Name;
-        GivenName = userData.GivenName;
-        Surname = userData.Surname;
+        Ssn = ssn;
+        Name = name;
+        GivenName = givenName;
+        Surname = surname;
     }
 
-    public BankIdCollectUserResponse(BankIdStatus status, bool isCompleted)
+    public CollectResponse(BankIdStatus status, bool isCompleted)
     {
         Status = status;
         IsCompleted = isCompleted;
