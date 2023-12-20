@@ -1,5 +1,6 @@
 ﻿using Application.Exceptions;
 using Application.Models.Requests;
+using Application.Models.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -19,7 +20,7 @@ public class BankIdController : Controller
 
     [HttpPost("initiate")]
     [Produces("application/json")]
-    //[ProducesResponseType(typeof(SimplifiedBankIdStartResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(StartResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
     public async Task<IActionResult> Initiate(StartRequest startRequest)
@@ -32,9 +33,9 @@ public class BankIdController : Controller
         return Ok(response);
     }
 
-    [HttpPost("initiate")]
+    [HttpPost("collect")]
     [Produces("application/json")]
-    //[ProducesResponseType(typeof(SimplifiedBankIdStartResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(CollectResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
     public async Task<IActionResult> Collect(CollectRequest collectRequest)
@@ -49,7 +50,7 @@ public class BankIdController : Controller
 
     [HttpPost("cancel")]
     [Produces("application/json")]
-    //[ProducesResponseType(typeof(SimplifiedBankIdStartResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(CancelResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
     public async Task<IActionResult> Cancel(CancelRequest cancelRequest)
@@ -64,7 +65,7 @@ public class BankIdController : Controller
 
     [HttpPost("qrcode/generate")]
     [Produces("application/json")]
-    //[ProducesResponseType(typeof(SimplifiedBankIdStartResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(QrCodeResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
     public async Task<IActionResult> QRGenerate(QrCodeRequest qrCodeRequest)
