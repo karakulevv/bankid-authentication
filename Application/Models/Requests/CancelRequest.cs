@@ -1,10 +1,9 @@
-﻿using Application.Models.Responses;
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
 
 namespace Application.Models.Requests;
 
-public class CancelRequest : OrderReference, IRequest<CancelResponse>
+public class CancelRequest : OrderReference, IRequest<Unit>
 {
 }
 

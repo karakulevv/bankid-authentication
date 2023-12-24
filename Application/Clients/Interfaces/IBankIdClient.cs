@@ -9,5 +9,5 @@ public interface IBankIdClient
 {
     Task<BankIdStartResponse> StartAuthenticationAsync(BankIdStartRequest request);
     Task<CollectResponse> CollectAuthenticationAsync(CollectRequest request);
-    Task CancelAuthenticationAsync(BankIdCancelRequest request);
+    Task CancelAuthenticationAsync(CancelRequest request);
 }

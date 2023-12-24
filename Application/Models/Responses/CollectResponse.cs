@@ -1,22 +1,34 @@
 ﻿using Application.Models.Enums;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using JsonConverter = Newtonsoft.Json.JsonConverter;
+using JsonConverterAttribute = Newtonsoft.Json.JsonConverterAttribute;
 
 namespace Application.Models.Responses;
 
 public class CollectResponse
 {
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    [JsonProperty("status")]
+    [JsonConverter(typeof(StringEnumConverter))]
     public BankIdStatus Status { get; }
 
+    [JsonProperty("isCompleted")]
     public bool IsCompleted { get; }
 
+    [JsonProperty("ssn")]
     public string? Ssn { get; }
 
+    [JsonProperty("name")]
     public string? Name { get; set; }
 
+    [JsonProperty("givenname")]
+    public string? GivenName { get; set; }
+
+    [JsonProperty("surname")]
     public string? Surname { get; set; }
 
-    public string? GivenName { get; set; }
+    [JsonProperty("secret")]
+    public Guid Secret { get; set; }
 
     public CollectResponse(string ssn, string name, string surname, string givenName)
     {

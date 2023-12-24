@@ -50,7 +50,7 @@ public class BankIdController : Controller
 
     [HttpPost("cancel")]
     [Produces("application/json")]
-    [ProducesResponseType(typeof(CancelResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
     public async Task<IActionResult> Cancel(CancelRequest cancelRequest)
