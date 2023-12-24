@@ -1,6 +1,7 @@
 ﻿using Application.Cache;
 using Application.Cache.Interfaces;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,7 +18,9 @@ public static class DependencyInjection
 
         services.AddValidatorsFromAssembly(assembly);
 
-        services.AddSingleton<ICache, InMemoryCache>();
+        services.
+            AddSingleton<ICache, InMemoryCache>().
+            AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         return services;
     }

@@ -47,7 +47,7 @@ public class BankIdQrCodeHandler : IRequestHandler<QrCodeRequest, QrCodeResponse
         }
     }
 
-    private string HashHMAC(string key, string message)
+    public string HashHMAC(string key, string message)
     {
         var keyBytes = Encoding.UTF8.GetBytes(key);
         var messageBytes = Encoding.UTF8.GetBytes(message);

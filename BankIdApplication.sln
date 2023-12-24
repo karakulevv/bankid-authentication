@@ -5,15 +5,17 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9681CF31-E109-4DC2-9544-E1F4309EACCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{54EBEB42-FBDC-475C-A8CF-8AB96FF1B30E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{54EBEB42-FBDC-475C-A8CF-8AB96FF1B30E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{3931429F-8E4D-4B42-97C6-E9851708D94B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{3931429F-8E4D-4B42-97C6-E9851708D94B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{9BFCDAC4-EB56-4ABD-848C-CB194B8BAA17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{9BFCDAC4-EB56-4ABD-848C-CB194B8BAA17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{E89485F2-41DA-4586-8EA0-C16DD8560984}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{E89485F2-41DA-4586-8EA0-C16DD8560984}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "react-ui", "react-ui", "{9EE9B60B-4363-4CE6-A8F0-3BFFA3FE1678}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankIdApplicationTests", "BankIdApplicationTests\BankIdApplicationTests.csproj", "{0FB44ECE-705D-42FC-ACB4-D4E261DBBBEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{E89485F2-41DA-4586-8EA0-C16DD8560984}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E89485F2-41DA-4586-8EA0-C16DD8560984}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E89485F2-41DA-4586-8EA0-C16DD8560984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FB44ECE-705D-42FC-ACB4-D4E261DBBBEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FB44ECE-705D-42FC-ACB4-D4E261DBBBEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FB44ECE-705D-42FC-ACB4-D4E261DBBBEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB44ECE-705D-42FC-ACB4-D4E261DBBBEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +53,7 @@ Global
 		{9BFCDAC4-EB56-4ABD-848C-CB194B8BAA17} = {9681CF31-E109-4DC2-9544-E1F4309EACCF}
 		{E89485F2-41DA-4586-8EA0-C16DD8560984} = {9681CF31-E109-4DC2-9544-E1F4309EACCF}
 		{9EE9B60B-4363-4CE6-A8F0-3BFFA3FE1678} = {9681CF31-E109-4DC2-9544-E1F4309EACCF}
+		{0FB44ECE-705D-42FC-ACB4-D4E261DBBBEB} = {9681CF31-E109-4DC2-9544-E1F4309EACCF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {84066157-C039-4A60-AA25-2146FE393B21}

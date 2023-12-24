@@ -9,7 +9,8 @@ using System.Net;
 namespace WebApi.Controllers;
 
 [Route("/apiauth/bankid")]
-public class BankIdController : Controller
+[ApiController]
+public class BankIdController : ControllerBase
 {
     private readonly IMediator _mediator;
 
