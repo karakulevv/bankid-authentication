@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using System;
+using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 
@@ -20,6 +21,29 @@ public static class BankIdClientHelper
         httpRequest.Content!.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
         return httpRequest;
+    }
+
+    public static X509Certificate2 LoadCertificate(string certificatePath, string certificatePassword)
+    {
+        try
+        {
+            if (File.Exists(certificatePath))
+            {
+                // Load the certificate from the full path
+                X509Certificate2 certificate = new X509Certificate2(certificatePath, certificatePassword);
+                return certificate;
+            }
+            else
+            {
+                Console.WriteLine("Certificate file not found.");
+                return null;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error loading certificate: " + ex.Message);
+            return null;
+        }
     }
 
     public static X509Certificate2 GetCertificate(string clientCertificateThumbprint)

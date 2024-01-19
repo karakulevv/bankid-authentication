@@ -1,5 +1,6 @@
 ﻿using Application.Cache;
 using Application.Cache.Interfaces;
+using Application.Clients.Options;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,8 @@ public static class DependencyInjection
         services.
             AddSingleton<ICache, InMemoryCache>().
             AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+        services.AddOptions<BankIdOptions>();
 
         return services;
     }

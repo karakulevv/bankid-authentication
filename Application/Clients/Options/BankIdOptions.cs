@@ -8,6 +8,8 @@ public class BankIdOptions
 
     public string CertificatePassword { get; set; }
 
+    public string CertificatePath { get; set; }
+
     public bool IgnoreServerCertificateErrors { get; set; }
 
     public string ClientCertificateThumbprint { get; set; }
