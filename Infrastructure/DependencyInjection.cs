@@ -17,6 +17,7 @@ public static class DependencyInjection
         var bankidOptions = configuration.GetSection(nameof(BankIdOptions));
         services.Configure<BankIdOptions>(bankidOptions);
         var bankIdOptions = bankidOptions.Get<BankIdOptions>();
+
         services.AddHttpClient<IBankIdClient, BankIdClient>(client =>
         {
             client.BaseAddress = new Uri(bankIdOptions!.BaseUrl);

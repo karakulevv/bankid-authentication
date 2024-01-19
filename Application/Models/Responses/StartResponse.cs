@@ -12,6 +12,6 @@ public class StartResponse
     {
         OrderRef = orderRef;
         BankIdAutoStartUrl = $"bankid:///?autostarttoken={autoStartToken}&redirect=null";
-        IosBankAutoStartUrl = $"https://app.bankid.com/?autostarttoken={autoStartToken}&redirect={(string.IsNullOrEmpty(returnUrl) ? "null" : returnUrl)}";
+        IosBankAutoStartUrl = $"https://app.bankid.com/?autostarttoken={autoStartToken}&redirect=null";
     }
 }

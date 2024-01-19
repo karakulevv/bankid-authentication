@@ -23,8 +23,6 @@ public static class DependencyInjection
             AddSingleton<ICache, InMemoryCache>().
             AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-        services.AddOptions<BankIdOptions>();
-
         return services;
     }
 }

@@ -14,16 +14,15 @@ using Application.Models.Enums;
 using Application.Clients.Models;
 using Application.Models.Responses;
 using Serilog;
-using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Clients;
 
 public class BankIdClient : IBankIdClient
 {
-    private readonly IHttpClientFactory _clientFactory;
+    private readonly HttpClient _httpClient;
     public const string ClientName = "BankIdClient";
     private readonly BankIdOptions _opt;
-    private readonly ILogger<BankIdClient> _logger;
+    private readonly ILogger _logger;
 
     private static readonly WaitMap[] WaitResultMappings = new WaitMap[11]
 {
@@ -48,9 +47,9 @@ public class BankIdClient : IBankIdClient
             new ErrorMap(HttpStatusCode.ServiceUnavailable, "Maintenance", BankIdStatus.Rfa5_BankIdError)
     };
 
-    public BankIdClient(IHttpClientFactory clientFactory, IOptions<BankIdOptions> opt, ILogger<BankIdClient> logger)
+    public BankIdClient(HttpClient httpClient, IOptions<BankIdOptions> opt, ILogger logger)
     {
-        _clientFactory = clientFactory;
+        _httpClient = httpClient;
         _opt = opt.Value;
         _logger = logger;
     }
@@ -71,7 +70,7 @@ public class BankIdClient : IBankIdClient
                 throw new BankIdException("Unexpected BankID error. Code: " + errorResponse.ErrorCode + ". Details: " + errorResponse.Details);
             }
 
-            _logger.LogError("Unknown BankID error. Code: " + errorResponse.ErrorCode + ". Details: " + errorResponse.Details);
+            _logger.Error("Unknown BankID error. Code: " + errorResponse.ErrorCode + ". Details: " + errorResponse.Details);
             return new BankIdStartResponse(BankIdStatus.Rfa22_UnknownError);
         }
         catch (Exception ex)
@@ -102,7 +101,7 @@ public class BankIdClient : IBankIdClient
                     return bankIdWaitAuthenticationResult;
                 }
 
-                _logger.LogError("Unknown hint code. " + LogData());
+                _logger.Error("Unknown hint code. " + LogData());
                 return new CollectResponse((okResponse.Status == CollectStatus.Failed) ? BankIdStatus.Rfa22_UnknownError : BankIdStatus.Rfa21_IdentificationInProgress, okResponse.Status == CollectStatus.Failed);
             }
 
@@ -137,11 +136,11 @@ public class BankIdClient : IBankIdClient
             var errorResponse = await PostAsync<ErrorResponse?>(request, _opt.Endpoints.BankIdCancel);
 
             string text = ((errorResponse == null) ? "success" : ("error=" + SerializeForLog(errorResponse)));
-            _logger.LogWarning("Cancel(orderRef: " + request.OrderRef + ", Result: " + text);
+            _logger.Warning("Cancel(orderRef: " + request.OrderRef + ", Result: " + text);
         }
         catch (Exception ex)
         {
-            _logger.LogWarning($"Client failed to cancel BankID authentication. Reason: {ex.Message}");
+            _logger.Warning($"Client failed to cancel BankID authentication. Reason: {ex.Message}");
             throw new Exception($"Client failed to cancel BankID authentication.", ex);
         }
     }
@@ -160,10 +159,9 @@ public class BankIdClient : IBankIdClient
 
     private async Task<(HttpStatusCode StatusCode, string? Content, ErrorResponse? ErrorResponse)> PostAsync(object request, string urlLastPart)
     {
-        var httpClient = _clientFactory.CreateClient(ClientName);
         var httpRequest = BankIdClientHelper.CreateHttpRequestMessage(urlLastPart, request);
 
-        HttpResponseMessage httpResponse = await httpClient.SendAsync(httpRequest);
+        HttpResponseMessage httpResponse = await _httpClient.SendAsync(httpRequest);
         string text = await httpResponse.Content.ReadAsStringAsync();
         if (httpResponse.IsSuccessStatusCode)
         {
