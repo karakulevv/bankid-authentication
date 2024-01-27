@@ -10,6 +10,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Serilog;
+using System.Net;
 
 namespace Application.Handlers;
 
@@ -34,8 +35,10 @@ public class BankIdStartHandler : IRequestHandler<StartRequest, StartResponse>
     {
         try
         {
-            var response = await _bankIdClient.StartAuthenticationAsync(new BankIdStartRequest { EndUserIp = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString() });
+            var ipAddress = GetIPv4Address(_httpContextAccessor.HttpContext.Connection.RemoteIpAddress);
+            _logger.Debug($"Customer IP Address: {ipAddress}");
 
+            var response = await _bankIdClient.StartAuthenticationAsync(new BankIdStartRequest { EndUserIp = ipAddress });
             if (ErrorMessageDictionary.ErrorMessages.ContainsKey(response.Status))
             {
                 _logger.Warning($"Failed to start BankID authentication. Status: {response.Status}, Order Ref: {response.OrderRef}.");
@@ -51,5 +54,15 @@ public class BankIdStartHandler : IRequestHandler<StartRequest, StartResponse>
             _logger.Error(ex, "Unexpected error occurred during BankID start");
             throw;
         }
+    }
+
+    public string GetIPv4Address(IPAddress ipAddress)
+    {
+        if (ipAddress.IsIPv4MappedToIPv6)
+        {
+            return ipAddress.MapToIPv4().ToString();
+        }
+
+        return ipAddress.ToString();
     }
 }

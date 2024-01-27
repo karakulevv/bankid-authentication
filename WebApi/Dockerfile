@@ -1,11 +1,11 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
+# Use the official image as a parent image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
 WORKDIR /app
+EXPOSE 80
+EXPOSE 443
 EXPOSE 8080
-EXPOSE 8081
 
+# Use SDK image to build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["WebApi/WebApi.csproj", "WebApi/"]
@@ -20,4 +20,10 @@ RUN dotnet publish "WebApi.csproj" -c Release -o /app/publish /p:UseAppHost=fals
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+# Set the environment to Development
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+# Copy certificates in the final image
+COPY WebApi/Certificates /app/Certificates
 ENTRYPOINT ["dotnet", "WebApi.dll"]

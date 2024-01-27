@@ -24,10 +24,10 @@ public static class DependencyInjection
             client.Timeout = TimeSpan.FromSeconds(30.0);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }).ConfigurePrimaryHttpMessageHandler((IServiceProvider services) =>
-        {
+        {  
             var httpClientHandler = new HttpClientHandler();
             // Retrieve and add the client certificate
-            string fullPath = Path.Combine(Environment.CurrentDirectory, bankIdOptions!.CertificatePath, bankIdOptions!.CertificateName);
+            string fullPath = Path.Combine("/app/Certificates", bankIdOptions!.CertificateName);
             var certificate = BankIdClientHelper.LoadCertificate(fullPath, bankIdOptions!.CertificatePassword);
 
             // Configure certificate validation callback and certificate based on options
